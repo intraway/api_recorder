@@ -16,7 +16,7 @@ There are a few things that can be changed with environment variables:
 
 ## Manage
 ### Get calls
-Get the API calls with the `/showmewhatyougot` endpoint [Show me what you got](showme.png?raw=true)
+Get the API calls with the `/showmewhatyougot` endpoint
 
 Available filters:
 * `url=<url>`: only get call to `<url>`
@@ -29,6 +29,7 @@ Available filters:
 * `url=<url>`: only reset `<url>` calls
 
 ## Example
+```
 $ sudo docker run -t --rm -e PORT=9000 intraway/api_recorder
 ```
 
