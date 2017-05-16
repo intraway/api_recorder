@@ -1,0 +1,5 @@
+host: '0.0.0.0'
+port: 8080
+record_all: true
+show_url: 'showmewhatyougot'
+reset_url: 'resetwhatyougot'
