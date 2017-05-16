@@ -18,6 +18,8 @@ There are a few things that can be changed with environment variables:
 ### Get calls
 Get the API calls with the `/showmewhatyougot` endpoint
 
+![showme](https://cloud.githubusercontent.com/assets/1962934/26114632/2a98048c-3a34-11e7-88ba-94f5f5a5b9e4.png)
+
 Available filters:
 * `url=<url>`: only get call to `<url>`
 * `n=<number>`: retrieve the latest `n` calls (only works with `url`)
@@ -43,6 +45,7 @@ $ curl -X PUT 'http://127.0.0.1:9000/ccc' -H "Content-Type: application/json" -d
 ```
 
 ### Get all calls
+![showme](https://cloud.githubusercontent.com/assets/1962934/26114632/2a98048c-3a34-11e7-88ba-94f5f5a5b9e4.png)
 ```
 $ curl 'http://127.0.0.1:9000/showmewhatyougot'
 {
