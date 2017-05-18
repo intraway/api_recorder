@@ -20,6 +20,7 @@ type EnhancedRequest struct {
 	Proto         string      `json:proto`
 	Host          string      `json:host`
 	Body          string      `json:body`
+	ParsedBody    interface{} `json:parsed_body`
 	RemoteAddress string      `json:remote_address`
 	ContentType   string      `json:content_type`
 	Timestamp     time.Time   `json:timestamp`
@@ -65,6 +66,9 @@ func (self *RequestsManager) update(r *http.Request) {
 
 	if content_type, ok := r.Header["Content-Type"]; ok {
 		er.ContentType = strings.Join(content_type, ",")
+		if len(er.ContentType) >= len("application/json") && er.ContentType[:len("application/json")] == "application/json" {
+			json.Unmarshal([]byte(er.Body), &er.ParsedBody)
+		}
 	}
 
 	if self.config.RecordAll {

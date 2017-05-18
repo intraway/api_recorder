@@ -32,6 +32,15 @@ func validate_ddd(data []*EnhancedRequest, t *testing.T) {
 	if len(data) != 1 {
 		t.Errorf("Len '/ddd' entry != 1. Got: %v", len(data))
 	}
+
+	er := data[0]
+	if er.ContentType != "application/json" {
+		t.Errorf("Expected content-type was application/json. Got: %v", er.ContentType)
+	}
+
+	if er.ParsedBody == nil {
+		t.Errorf("Nil parsed body")
+	}
 }
 
 func TestShowAndReset(t *testing.T) {
@@ -53,7 +62,7 @@ func TestShowAndReset(t *testing.T) {
 	client.Get(endpoint1 + "?q1=30&q2=40")
 	client.Get(endpoint2)
 	client.Get(endpoint2)
-	e3body := []byte(`{"abc":123}`)
+	e3body := []byte(`{"abc":123, "def": 45}`)
 	client.Post(endpoint3, "application/json", bytes.NewBuffer(e3body))
 
 	// GET ALL
