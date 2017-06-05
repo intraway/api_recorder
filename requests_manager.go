@@ -68,7 +68,10 @@ func (self *RequestsManager) update(r *http.Request) {
 		er.ContentType = strings.Join(content_type, ",")
 		// Yeah, I know, it's not the correct solution
 		if strings.Contains(er.ContentType, "json") {
-			if err := json.Unmarshal([]byte(er.Body), &er.ParsedBody); err != nil {
+			decoder := json.NewDecoder(strings.NewReader(er.Body))
+			decoder.UseNumber()
+
+			if err := decoder.Decode(&er.ParsedBody); err != nil {
 				er.ParsedBody = nil
 			}
 		}
