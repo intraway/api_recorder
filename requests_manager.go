@@ -66,8 +66,11 @@ func (self *RequestsManager) update(r *http.Request) {
 
 	if content_type, ok := r.Header["Content-Type"]; ok {
 		er.ContentType = strings.Join(content_type, ",")
-		if len(er.ContentType) >= len("application/json") && er.ContentType[:len("application/json")] == "application/json" {
-			json.Unmarshal([]byte(er.Body), &er.ParsedBody)
+		// Yeah, I know, it's not the correct solution
+		if strings.Contains(er.ContentType, "json") {
+			if err := json.Unmarshal([]byte(er.Body), &er.ParsedBody); err != nil {
+				er.ParsedBody = nil
+			}
 		}
 	}
 
