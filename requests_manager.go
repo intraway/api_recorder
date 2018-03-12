@@ -86,6 +86,7 @@ func (self *RequestsManager) update(r *http.Request) {
 
 func (self *RequestsManager) handleAll(w http.ResponseWriter, r *http.Request) {
 	self.update(r)
+	w.Header()["Content-Type"] = []string{"application/json"}
 	fmt.Fprintf(w, "{\"message\":\"OK\"}")
 }
 
@@ -133,6 +134,8 @@ func (self *RequestsManager) handleShow(w http.ResponseWriter, r *http.Request) 
 		result = string(res)
 	}
 
+	w.Header()["Content-Type"] = []string{"application/json"}
+
 	fmt.Fprintf(w, string(result))
 }
 
@@ -149,6 +152,7 @@ func (self *RequestsManager) handleReset(w http.ResponseWriter, r *http.Request)
 		self.requests = make(map[string][]*EnhancedRequest)
 	}
 
+	w.Header()["Content-Type"] = []string{"application/json"}
 	fmt.Fprintf(w, "{\"message\":\"OK\"}")
 }
 
